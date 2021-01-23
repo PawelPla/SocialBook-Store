@@ -1,0 +1,39 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block content %}
+<div class="content-section">
+    <div class="media">
+        {% if profile.profile_pic %}
+        <img class="account-img" src="{{ profile.profile_pic.url }}" alt="profile_pic">
+        {% else %}
+        <img class="account-img" src="{% static 'images/gandalf.jpg' %}" alt="default_gandalf">
+        {% endif %}
+        <div class="media-body">
+            <h2 class="account-heading">{{ profile.username }}</h2>
+            <p class="text-secondary">{{ profile.email }}</p>
+            <p class="text-secondary">{{ profile.first_name }}</p>
+        </div>
+    </div>
+</div>
+
+{% if profile.pk == request.user.pk %}
+<div class="row">
+    <div class="col">
+        <button class="btn btn-outline-primary">
+            <a href="{% url 'profile_update' profile.pk %}" style="color:black">
+                Update Profile
+            </a>
+        </button>
+    </div>
+    <div class="col">
+        <button class="btn btn-outline-warning ml-3">
+            <a href="{% url 'account_change_password' %}" style="color:red">
+                Reset Password
+            </a>
+        </button>
+    </div>
+</div>
+{% endif %}
+
+
+{% endblock content %}

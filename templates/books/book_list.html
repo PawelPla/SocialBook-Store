@@ -1,0 +1,21 @@
+{% extends '_base.html' %}
+{% block title %}Books{% endblock title %}
+
+{% block content %}
+{% if not perms.books.all_books_status%}
+<div class="container">
+    <a href="{% url 'orders' %}" class="btn btn-success">Purchase all Books</a>
+</div>
+{% endif %}
+
+{% for book in book_list %}
+<div class="container">
+    <h3><a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a></h3>
+    <div class="container">
+        <h5>{{ book.author }}</h5>
+        Reviews (<b>{{ book.reviews.all.count }}</b>)
+    </div>
+    <hr>
+</div>
+{% endfor %}
+{% endblock content %}

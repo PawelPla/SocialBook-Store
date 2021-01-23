@@ -1,0 +1,10 @@
+.idea/
+db.sqlite3
+media/
+staticfiles/
+venv/
+migrations/
+.gitinore
+.git
+Pipfile
+Pipfile.lock

@@ -1,0 +1,21 @@
+{% extends '_base.html' %}
+
+{% block title %}Orders{% endblock title %}
+
+{% block content %}
+<h2>Orders Page</h2>
+<div class="container">
+    <div>
+        <p>Buy access to all books for $39.00</p>
+        <form action="{% url 'charge' %}" method="post">
+            {% csrf_token %}
+            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    data-key="{{ stripe_key }}"
+                    data-description="All Books"
+                    data-amount="3900"
+                    data-locale="auto">
+            </script>
+        </form>
+    </div>
+</div>
+{% endblock content %}

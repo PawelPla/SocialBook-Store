@@ -1,0 +1,35 @@
+{% extends '_base.html' %}
+
+{% block title %}Search Results{% endblock title %}
+
+{% block content %}
+{% if book_list%}
+{% for book in book_list %}
+<div class="row">
+    <div>
+        {% if book.cover%}
+        <img class="book_cover" src="{{ book.cover.url }}" alt="{{ book.title }}">
+        {% endif %}
+    </div>
+    <div>
+        <h4><a href="{{ book.get_absolute_url }}"><u>{{ book.title }}</u></a></h4>
+        <p>Author: {{ book.author }}</p>
+        <p>Price: $ <b>{{ book.price }}</b></p>
+    </div>
+</div>
+<hr>
+{% endfor %}
+{% else %}
+<div class="container">
+    <h4>No search results</h4>
+    <div class="list-group-item list-group-item-light feature-box">
+        <form action="{% url 'search_results' %}"
+              method="get">
+            <input name="q" class="form-control mr-sm-2" type="text"
+                   placeholder="Try again"
+                   aria-label="Search">
+        </form>
+    </div>
+</div>
+{% endif %}
+{% endblock content %}

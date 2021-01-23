@@ -1,0 +1,23 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block content %}
+<h3>Awesome no-lif...ekhm, Contributors</h3>
+<h4><u>Top 5</u></h4>
+{% for reviewer in top_reviewers %}
+<article class="media content-section">
+    {% if reviewer.profile_pic %}
+    <img class="rounded-circle article-img" src="{{ reviewer.profile_pic.url }}" alt="profile_pic">
+    {% else %}
+    <img class="rounded-circle article-img" src="{% static 'images/gandalf.jpg' %}" alt="default_gandalf">
+    {% endif %}
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="{% url 'profile_detail' reviewer.pk %}">{{ reviewer.username }}</a>
+
+        </div>
+        <h4><a class="article-title" href="{% url 'profile_reviews' reviewer.pk %}">Total reviews: <u>{{ reviewer.num_reviews }}</u></a></h4>
+
+    </div>
+</article>
+{% endfor %}
+{% endblock content %}

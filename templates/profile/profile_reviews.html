@@ -1,0 +1,18 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block content %}
+{% for review in reviewer %}
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="{% url 'book_detail' review.book.pk %}">{{ review.book }}</a>
+
+        </div>
+        <h4> {{ review }}</h4>
+
+    </div>
+</article>
+{% endfor %}
+
+
+{% endblock content %}
